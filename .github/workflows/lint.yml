@@ -1,0 +1,20 @@
+name: Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: install linters
+      run: pip install -U black flake8
+    - name: Run black
+      run: black --check --diff .
+    - name: Run flake8
+      run: flake8 .
