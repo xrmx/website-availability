@@ -49,7 +49,7 @@ def main(*args):
             # FIXME: expect issues there as string is not raw :|
             content_re = re.compile(args.content_match)
         except re.error as e:
-            logger.error("Invalid --content-match value: {}".format(str))
+            logger.error("Invalid --content-match value: {}".format(str(e)))
             return sys.exit(1)
     else:
         content_re = None
