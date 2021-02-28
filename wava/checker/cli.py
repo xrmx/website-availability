@@ -14,11 +14,23 @@ logger = logging.getLogger()
 
 def main():
     parser = argparse.ArgumentParser(description="Website availability checker")
-    parser.add_argument("--interval", type=int, default=60, help="Interval of the check in seconds, default 60")
-    parser.add_argument("--timeout", type=int, default=1, help="Timeout for request checker to wait for the first byte in seconds, default 1")
-    parser.add_argument("--content-match", help="Regular expression to search in the response body")
+    parser.add_argument(
+        "--interval",
+        type=int,
+        default=60,
+        help="Interval of the check in seconds, default 60",
+    )
+    parser.add_argument(
+        "--timeout",
+        type=int,
+        default=1,
+        help="Timeout for request checker to wait for the first byte in seconds, default 1",
+    )
+    parser.add_argument(
+        "--content-match", help="Regular expression to search in the response body"
+    )
     parser.add_argument("--url", required=True, help="The HTTP url to check")
-    parser.add_argument('--verbose', '-v', action='count', default=0)
+    parser.add_argument("--verbose", "-v", action="count", default=0)
 
     args = parser.parse_args()
 
