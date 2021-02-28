@@ -17,7 +17,10 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
+        "dsnparse",
+        "kafka-python",
         "requests",
+        "psycopg2-binary",
         "validators",
     ],
     setup_requires=["pytest-runner"],
@@ -25,5 +28,10 @@ setuptools.setup(
         "pytest",
         "requests-mock",
     ],
-    entry_points={"console_scripts": ["wavacheck=wava.checker.cli:main"]},
+    entry_points={
+        "console_scripts": [
+            "wavacheck=wava.checker.cli:main",
+            "wavawrite=wava.writer.cli:main",
+        ]
+    },
 )
