@@ -19,9 +19,6 @@ setuptools.setup(
     install_requires=[
         "requests",
         "validators",
-        #"kafka-python",
     ],
-    entry_points = {
-        "console_scripts": ["wavacheck=wava.checker.cli:main"]
-    }
+    entry_points={"console_scripts": ["wavacheck=wava.checker.cli:main"]},
 )
