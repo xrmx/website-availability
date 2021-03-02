@@ -21,6 +21,11 @@ def test_main_calls_loop_properly():
         main(["--url", "http://example.com"])
     loop_mock.assert_called_once_with({
         "url": "http://example.com",
+        "kafka_brokers": "kafka-wava-d538bd8-riccardo-ae5f.aivencloud.com:27652",
+        "kafka_topic": "test",
+        "kafka_ssl_cafile": "ca.pem",
+        "kafka_ssl_certfile": "service.cert",
+        "kafka_ssl_keyfile": "service.key",
         "interval": 60,
         "timeout": 1,
         "content_re": None,
