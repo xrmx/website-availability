@@ -16,7 +16,9 @@ def loop(config, check, cleanup):
             try:
                 response = check(config)
             except CheckerNetworkError as e:
-                logger.error("Network error:".format(str(e.checker_original_exception)))
+                logger.error(
+                    "Network error: {}".format(str(e.checker_original_exception))
+                )
             else:
                 # FIXME: verbosity should handle default logger value
                 if config["verbosity"]:
