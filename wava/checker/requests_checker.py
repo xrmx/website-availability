@@ -37,5 +37,6 @@ def check(config):
     }
 
 
-def cleanup(config):
-    pass
+def cleanup(config, producer):
+    producer.flush()
+    producer.close()
