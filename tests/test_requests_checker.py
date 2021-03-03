@@ -29,6 +29,8 @@ def test_check_returns_dictionary():
             "content_re": None,
         })
     assert response == {
+        "ts": mock.ANY,
+        "url": "http://example.com",
         "http_response_time": mock.ANY,
         "status_code": 200,
         "content_matched": None,
@@ -44,6 +46,8 @@ def test_check_matcher_match_content_re_with_body():
             "content_re": re.compile(r"bo"),
         })
     assert response == {
+        "ts": mock.ANY,
+        "url": "http://example.com",
         "http_response_time": mock.ANY,
         "status_code": 200,
         "content_matched": True,

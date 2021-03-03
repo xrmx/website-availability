@@ -5,6 +5,7 @@ import sys
 
 import validators
 
+from wava.args import parse_common_kafka_args
 from wava.checker.main import loop
 from wava.checker.requests_checker import check, cleanup
 
@@ -14,6 +15,7 @@ logger = logging.getLogger()
 
 def build_argument_parser():
     parser = argparse.ArgumentParser(description="Website availability checker")
+    parse_common_kafka_args(parser)
     parser.add_argument(
         "--interval",
         type=int,
@@ -49,13 +51,18 @@ def main(*args):
             # FIXME: expect issues there as string is not raw :|
             content_re = re.compile(args.content_match)
         except re.error as e:
-            logger.error("Invalid --content-match value: {}".format(str))
+            logger.error("Invalid --content-match value: {}".format(str(e)))
             return sys.exit(1)
     else:
         content_re = None
 
     config = {
         "url": args.url,
+        "kafka_brokers": args.kafka_broker,
+        "kafka_topic": args.kafka_topic,
+        "kafka_ssl_cafile": args.kafka_ssl_cafile,
+        "kafka_ssl_certfile": args.kafka_ssl_certfile,
+        "kafka_ssl_keyfile": args.kafka_ssl_keyfile,
         "interval": args.interval,
         "timeout": args.timeout,
         "content_re": content_re,
