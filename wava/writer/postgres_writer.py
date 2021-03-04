@@ -59,7 +59,7 @@ def write(config, payload):
     insert_url_sql = "INSERT INTO wava_url (url) VALUES (%s) ON CONFLICT DO NOTHING;"
     insert_url_params = (payload["url"],)
 
-    get_url_id_sql = "SELECT id FROM wava_url WHERE url = '%s'"
+    get_url_id_sql = "SELECT id FROM wava_url WHERE url = %s"
     get_url_id_params = (payload["url"],)
 
     insert_check_sql = (
