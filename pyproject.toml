@@ -1,0 +1,4 @@
+[tool.pytest.ini_options]
+markers = [
+    "postgres: marks tests as requiring postgresql running (deselect with '-m \"not postgres\"')",
+]
