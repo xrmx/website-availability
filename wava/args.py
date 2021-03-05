@@ -11,13 +11,21 @@ def parse_common_kafka_args(parser):
         nargs="+",
         default="kafka-wava-d538bd8-riccardo-ae5f.aivencloud.com:27652",
     )
-    parser.add_argument("--kafka-topic", help="Kafka topic", default="test")
     parser.add_argument(
-        "--kafka-ssl-cafile", help="Kafka CA certificate", default="ca.pem"
+        "--kafka-topic", help="Kafka topic, default: topic", default="test"
     )
     parser.add_argument(
-        "--kafka-ssl-certfile", help="Kafka access certificate", default="service.cert"
+        "--kafka-ssl-cafile",
+        help="Kafka CA certificate, default: ca.pem",
+        default="ca.pem",
     )
     parser.add_argument(
-        "--kafka-ssl-keyfile", help="Kafka access key", default="service.key"
+        "--kafka-ssl-certfile",
+        help="Kafka access certificate, default: service.cert",
+        default="service.cert",
+    )
+    parser.add_argument(
+        "--kafka-ssl-keyfile",
+        help="Kafka access key, default: service.key",
+        default="service.key",
     )
