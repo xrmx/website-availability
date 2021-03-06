@@ -4,9 +4,9 @@ wava is a website availability checker. It's mostly a toy implementation :)
 
 ## Architecture
 
-wava use Kafka for communicating and PostgreSQL to store its results.
+wava uses Kafka for communicating and PostgreSQL to store its results.
 
-wava consists of two programs: wavacheck and wavawrite. wavacheck checks the availability of an URL
+wava consists of two CLI programs: wavacheck and wavawrite. wavacheck checks the availability of an URL
 via HTTP at a fixed interval, wavawrite writes the output to the PostgreSQL database.
 
 ## Installation
@@ -19,19 +19,19 @@ wava is not publishead on Pypi, you should install it from a checkout of this re
 pip install -e .
 ```
 
-Better install it on a local virtual environment
+Better install it on a local virtual environment.
 
 ## Configuration
 
 Only authentications with certificates is supported for Kafka.
 
-See wavacheck and wavawrite help for details.
+Call wavacheck and wavawrite with `--help` to see all the available options.
 
 ## Development
 
 ### Local configuration
 
-[pre-commit](https://pre-commit.com/) is used to check changes before a commit. Once you have installed it you can setup it with:
+[pre-commit](https://pre-commit.com/) is used to check changes before a commit. Please install it and then setup it with:
 
 ```
 pre-commit install
@@ -47,9 +47,9 @@ python setup.py test
 
 Some tests require a PostgreSQL instance already running, you can find `postgres/docker-compose.yml` handy.
 
-You can skip these PostgreSQL integration tests with `pytest -m "not postgres"`. Please note you can use pytest after setting up requirements with the `python setup.py test` command.
+You can skip these PostgreSQL integration tests with `pytest -m "not postgres"`. Please note you can use `pytest` directly only after setting up test requirements with the `python setup.py test` command.
 
 
 ## Fun facts
 
-Developing this program [one pull request](https://github.com/kvesteri/validators/pull/186) was contributed to one of wava dependencies.
+[one pull request](https://github.com/kvesteri/validators/pull/186) was contributed to one of wava dependencies while developing this program.
