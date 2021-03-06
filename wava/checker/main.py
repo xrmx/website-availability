@@ -10,7 +10,14 @@ logger = logging.getLogger()
 
 
 def loop(config, check, cleanup):
-    """Main loop of the program that will execute the checker"""
+    """Main loop of the program that will execute the checker
+
+    It takes three parameters:
+    - the config, parsed by the cli
+    - a check function, to do the actual availability checking
+    - a cleanup function, to do the cleanup at exit
+
+    The loop is agnostic of the actual checker implementation."""
 
     producer = KafkaProducer(
         bootstrap_servers=config["kafka_brokers"],

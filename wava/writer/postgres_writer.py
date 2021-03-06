@@ -47,15 +47,7 @@ def setup(config):
 
 
 def write(config, payload):
-    """
-    return {
-        "ts": now.isoformat(),
-        "url": url,
-        "http_response_time": response_time_ms,
-        "status_code": response.status_code,
-        "content_matched": content_matched,
-    }
-    """
+    """Writes the payload into the database tables"""
     insert_url_sql = "INSERT INTO wava_url (url) VALUES (%s) ON CONFLICT DO NOTHING;"
     insert_url_params = (payload["url"],)
 
@@ -98,4 +90,5 @@ def write(config, payload):
 
 
 def cleanup(config, consumer):
+    """Cleanup function called on exit"""
     consumer.close()

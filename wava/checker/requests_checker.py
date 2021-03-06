@@ -9,6 +9,7 @@ SECONDS_TO_MS = 1000
 
 
 def check(config):
+    """The requests based implementation of the checker"""
     url = config["url"]
     timeout = config["timeout"]
     content_re = config["content_re"]
@@ -38,5 +39,6 @@ def check(config):
 
 
 def cleanup(config, producer):
+    """Cleanup function called on exit"""
     producer.flush()
     producer.close()
