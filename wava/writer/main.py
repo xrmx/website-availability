@@ -26,22 +26,25 @@ def loop(config, write, cleanup):
         # TODO: catch signals
         while True:
             try:
-                records = consumer.poll(config["kafka_poll_timeout"])
+                raw_msgs = consumer.poll(config["kafka_poll_timeout"])
             except KafkaError as e:
                 logger.error(
                     "Network error: {}".format(str(e.writer_original_exception))
                 )
             else:
-                for record in records:
-                    logger.debug("record: {}".format(str(record.value)))
-                    try:
-                        payload = json.loads(record.value.decode("utf-8"))
-                        write(config, payload)
-                    except (UnicodeDecodeError, json.decoder.JSONDecodeError):
-                        logger.error("dropped invalid record: {}".format(record.value))
-                        continue
-                    except WriterError as e:
-                        logger.error("write failure: {}".format(str(e.original_value)))
+                for msgs in raw_msgs.values():
+                    for msg in msgs:
+                        logger.debug("record: {}".format(msg.value))
+                        try:
+                            payload = json.loads(msg.value.decode("utf-8"))
+                            write(config, payload)
+                        except (UnicodeDecodeError, json.decoder.JSONDecodeError):
+                            logger.error("dropped invalid record: {}".format(msg.value))
+                            continue
+                        except WriterError as e:
+                            logger.error(
+                                "write failure: {}".format(str(e.original_value))
+                            )
 
                 consumer.commit()
     except KeyboardInterrupt:

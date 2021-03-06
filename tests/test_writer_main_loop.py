@@ -30,7 +30,7 @@ def test_loop_send_decoded_payload_to_write():
     encoded_payload = json.dumps({"a": "payload"}).encode("utf-8")
     record_mock.value = encoded_payload
     consumer_mock = mock.MagicMock()
-    consumer_mock.poll.return_value = [record_mock]
+    consumer_mock.poll.return_value = {"topic": [record_mock]}
     consumer_mock.commit.side_effect = KeyboardInterrupt
 
     write_mock = mock.MagicMock()
