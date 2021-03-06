@@ -53,3 +53,10 @@ You can skip these PostgreSQL integration tests with `pytest -m "not postgres"`.
 ## Fun facts
 
 [one pull request](https://github.com/kvesteri/validators/pull/186) was contributed to one of wava dependencies while developing this program.
+
+
+## Possible improvements
+
+- Use type hints
+- Handling of signals
+- Simplify pyscopg2 error handling with fine grained exceptions catching
